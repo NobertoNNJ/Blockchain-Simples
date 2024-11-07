@@ -70,6 +70,8 @@ Esse projeto apenas cria um exemplo simplificado de uma blockchain com algumas t
 
 **createMerkleTree:** Método de contrução da árvore de Merkle utilizada para garantir a integridade das transações. Ele gera um hash para cada transação, combina os hashes gerados em pares para gerar novos hashes até sobrar apenas 1 que é armazenado no bloco, essa é a raiz da árvore.*obs: caso o numero de hashes seja ímpar o ultimo é duplicado para gerar o novo hash.*
 
+**mineBlock:** Realiza a mineração do bloco, utilizando atualização do nonce para atigir uma certa dificuldade, PoW.
+
 **classe Blockchain:** Representa a cadeia de blocos da blockchain, nele que fica a lista de blocos adicionados a blockchain e as transações que serão adicionadas a um bloco.
 
 **createGenesisBlock:** método de criação do bloco genesis da blockchain.
@@ -78,8 +80,12 @@ Esse projeto apenas cria um exemplo simplificado de uma blockchain com algumas t
 
 **addBlock:** Método para adcionar novo bloco a blockchain.
 
-**createTransaction:** Adiciona transação a lista de transações a serem adcionadas no bloco.
+**createTransaction:** Adiciona a transação a um novo bloco a ser minerado, e adiciona o bloco a blockchain.
 
-**addPendingTransaction:** método que adciona as transações pendentes a um novo bloco, e adciina o bloco a blockchain.
+**isValidAddres:** verifica se um enderço é valido para os criterios escolhidos na blockchain.
+
+**updateTransactionHistory:** atualiza o historico de transações, com as transações realizadas, de quem enviou para quem recebeu.
+
+**getTransactionHistory:** retorna o historico de transações de um endereço especifico.
 
 **isChainValid:** método para verificar a integridade da blockchain, verifica se o hash de cada bloco e o hash anterior estão corretos, e a integridade da árvore de Merkle.
