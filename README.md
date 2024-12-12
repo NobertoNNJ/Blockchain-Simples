@@ -24,37 +24,15 @@ Após abrir o diretorio no terminal basta executa-lo, ele pode ser executado atr
 
 ### Execução com node
 
-No terminal do diretorio utilizar o comando ``node index.js``, com isso será exibido no console:
-
-~~~
-Iniciando a Blockchain...
-Adicionando Transações
-Block added: 366296861720357e2f57acfaeeba3896f82005e396f018771aab51d92239daaf
-Adicionando Transações
-Block added: e3933929adb5be9126de14fef237608cc1e4fff9e7937af3c67c5192bf1baad9
-Blockchain valida? true
-~~~
+No terminal do diretorio utilizar o comando ``node index.js``
 
 _obs: Necessario ter o node instalado._
 
-_obs2: O hash não será igual o mostrado acima_
-
 ### execução com Docker
 
-No terminal do diretorio utilizar o comando ``docker build -t blockchain .``, após a exetução utilizar o comando ``docker run blockchain``, com isso será exibido no console:
-
-~~~
-Iniciando a Blockchain...
-Adicionando Transações
-Block added: 366296861720357e2f57acfaeeba3896f82005e396f018771aab51d92239daaf
-Adicionando Transações
-Block added: e3933929adb5be9126de14fef237608cc1e4fff9e7937af3c67c5192bf1baad9
-Blockchain valida? true
-~~~
+No terminal do diretorio utilizar o comando ``docker build -t blockchain .``, após a exetução utilizar o comando ``docker run blockchain``
 
 _obs: Necessario ter o Docker instalado e aberto._
-
-_obs2: O hash não será igual o mostrado acima_
 
 ## Funcionalidades
 
@@ -62,9 +40,9 @@ Esse projeto apenas cria um exemplo simplificado de uma blockchain com algumas t
 
 ## Explicação do codigo:
 
-**classe Transactions:** Representa uma transação simples entre 2 usuarios.
+### **classe Transactions:** Representa uma transação simples entre 2 usuarios.
 
-**classe Block:** Representação de um bloco na blockchain com seus dados.
+### **classe Block:** Representação de um bloco na blockchain com seus dados.
 
 **calculateHash:** Método que gera o hash do bloco, utiliza da biblioteca crypto com o algoritimo sha-256, esse hash é criado com base no hash do bloco anterior, na data de criação e nas transações incluidads no bloco, ele então gera um hash hexadecimal.
 
@@ -72,15 +50,21 @@ Esse projeto apenas cria um exemplo simplificado de uma blockchain com algumas t
 
 **mineBlock:** Realiza a mineração do bloco, utilizando atualização do nonce para atigir uma certa dificuldade, PoW.
 
-**classe Blockchain:** Representa a cadeia de blocos da blockchain, nele que fica a lista de blocos adicionados a blockchain e as transações que serão adicionadas a um bloco.
+### **classe Address:** Representa um endereço pertencente a um usuario da blockchain.
+
+**isValidAddress:** verifica se o endereço atende certos requisitos e é valido.
+
+**addBalance:** adiciona um valor ao saldo da conta.
+
+**deductBalance:** deduz um valor do saldo da conta.
+
+### **classe Blockchain:** Representa a cadeia de blocos da blockchain, nele que fica a lista de blocos adicionados a blockchain e as transações que serão adicionadas a um bloco.
 
 **createGenesisBlock:** método de criação do bloco genesis da blockchain.
 
 **getLastestBlock:** Retorna o ultimo bloco da blockchain
 
 **addBlock:** Método para adcionar novo bloco a blockchain.
-
-**createTransaction:** Adiciona a transação a um novo bloco a ser minerado, e adiciona o bloco a blockchain.
 
 **isValidAddres:** verifica se um enderço é valido para os criterios escolhidos na blockchain.
 
@@ -89,3 +73,13 @@ Esse projeto apenas cria um exemplo simplificado de uma blockchain com algumas t
 **getTransactionHistory:** retorna o historico de transações de um endereço especifico.
 
 **isChainValid:** método para verificar a integridade da blockchain, verifica se o hash de cada bloco e o hash anterior estão corretos, e a integridade da árvore de Merkle.
+
+### **classe Node:** Simular um peer da rede que possui uma copia da blockchain.
+
+**connectNode:** realiza a conexão entre nodes.
+
+**propagateBlockchain:** Dissemina a blockchain para os demais nodes conectados ao node que chamou a função.
+
+**receiveBlockchain:** recebe a blockchain e verifica se é valida e mais longa que a atual para disseminala ou não para os demis nodes.
+
+**createTransaction:** Adiciona a transação a um novo bloco a ser minerado, e adiciona o bloco a blockchain.
